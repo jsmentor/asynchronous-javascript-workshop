@@ -1,6 +1,6 @@
 /*
 - Conflates the input with the output
-- Doesnt wotk with control flow primitivesxx
+- Doesnt work with control flow primitives
 - Error handling
 - and doing parallel operations
 */
@@ -11,31 +11,48 @@ function logDuration(startedAt, message) {
     console.log(`>> ${message} >> duration:`, present() - startedAt);
 }
 
+function xhr(){
+    var req = new XMLHttpRequest();
+
+
+    req.open('GET', '/', false);
+    req.send();
+
+    return req.response;
+}
+
 function getJSONSync(fileName) {
     // return JSON.parse(fs.readFileSync(fileName, 'utf-8'));
     var startedAt = present();
+
     var data = fs.readFileSync(fileName, 'utf-8');
+
     logDuration(startedAt, 'getJSONSync');
-    return JSON.parse(data);
+    data = JSON.parse(data);
+    return data;
 }
 
 //async
 function getJSON(fileName, callback) {
     var startedAt = present();
-    fs.readFile(fileName, 'utf-8', function(err, data) {
+    function giveMeTheResult(err, data) {
         if (err) {
-            return callback(err);
+            return callback(err, null);
         }
         logDuration(startedAt, 'getJSONSync');
 
         try {
+            // Sync
             data = JSON.parse(data);
         } catch (err) {
-            return callback(err)
+            return callback(err, null);
         }
         callback(null, data);
-    });
+    }
+    fs.readFile(fileName, 'utf-8', giveMeTheResult);
 }
+
+// Pulling vs Pushing
 
 function callSync() {
     try {
@@ -47,13 +64,19 @@ function callSync() {
 }
 
 function callAsync() {
-    getJSON('data/users.json', function(err, data) {
+    function giveMeTheObject(err, data) {
         if (err) {
             return console.error('Error:', err);
         }
         console.log(data);
-    });
+    }
+    getJSON('data/users.json', giveMeTheObject);
 }
+
+// callSync();
+
+// callAsync();
+
 
 function aWeirdScenarioInSync() {
     try {
@@ -112,12 +135,7 @@ function logUserPopularSeries(user, privateInfo, popularSeries) {
 // callSync();
 // callAsync();
 // aWeirdScenarioInSync();
-ifAsyncGoToHELLWithYourScenario();
-
-
-
-
-
+//ifAsyncGoToHELLWithYourScenario();
 
 
 

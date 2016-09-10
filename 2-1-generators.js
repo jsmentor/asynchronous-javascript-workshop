@@ -78,18 +78,18 @@ function aWeirdScenarioInSync() {
   }
 }
 
-var aModernAsyncScenario = async function () {
+var aCoolAsyncScenario = awaitify(function* () {
   try {
-    var data = await getJSON('data/users.json');
+    var data = yield getJSON('data/users.json');
     var randomUser = getRandomUser(data);
-    var privateInfo = await getJSON(getRandomUserFileAddress(randomUser));
-    var popularSeries = await getJSON('data/popular-series.json');
+    var privateInfo = yield getJSON(getRandomUserFileAddress(randomUser));
+    var popularSeries = yield getJSON('data/popular-series.json');
     logUserPopularSeries(randomUser, privateInfo, popularSeries);
   }
   catch (e) {
     console.error(err);
   }
-};
+});
 
 function getRandomUser(data) {
   return data[Math.floor(Math.random() * data.length)];
@@ -113,7 +113,10 @@ function logUserPopularSeries(user, privateInfo, popularSeries) {
 // callSync();
 // callAsync();
 // aWeirdScenarioInSync();
-aModernAsyncScenario();
+aCoolAsyncScenario();
+
+
+
 
 
 
@@ -135,14 +138,14 @@ function test() {
   aWeirdScenarioInSync();
   aWeirdScenarioInSync();
 
-  // aModernAsyncScenario();
-  // aModernAsyncScenario();
-  // aModernAsyncScenario();
-  // aModernAsyncScenario();
-  // aModernAsyncScenario();
-  // aModernAsyncScenario();
-  // aModernAsyncScenario();
-  // aModernAsyncScenario();
+  // aCoolAsyncScenario();
+  // aCoolAsyncScenario();
+  // aCoolAsyncScenario();
+  // aCoolAsyncScenario();
+  // aCoolAsyncScenario();
+  // aCoolAsyncScenario();
+  // aCoolAsyncScenario();
+  // aCoolAsyncScenario();
 
   console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
   console.log('The control flow is DONE, how long it took:', present() - startedAt);

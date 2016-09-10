@@ -11,10 +11,34 @@ function logDuration(startedAt, message) {
     console.log(`>> ${message} >> duration: `, present() - startedAt);
 }
 
+
+function getJSON(fileName, callback) {
+    return new Promise();
+
+    var startedAt = present();
+    function giveMeTheResult(err, data) {
+        if (err) {
+            return callback(err, null);
+        }
+        logDuration(startedAt, 'getJSONSync');
+
+        try {
+            // Sync
+            data = JSON.parse(data);
+        } catch (err) {
+            return callback(err, null);
+        }
+        callback(null, data);
+    }
+
+    fs.readFile(fileName, 'utf-8', giveMeTheResult);
+}
+
+
 function getJSONSync(fileName) {
     // return JSON.parse(fs.readFileSync(fileName, 'utf-8'));
     var startedAt = present();
-    var data = fs.readFileSync(fileName, 'utf-8');
+    var data = fs.readFileSync(fileName, JSON.parse(data), 'utf-8');
     logDuration(startedAt, 'getJSONSync');
     return JSON.parse(data);
 }
@@ -37,7 +61,9 @@ function getJSON(fileName, callback) {
             // }
             // resolve(data);
 
-            resolve(JSON.parse(data));
+            data = JSON.parse(data);
+
+            resolve(data);
         }
 
         fs.readFile(fileName, 'utf-8', returnResopnse);
@@ -117,7 +143,7 @@ function logUserPopularSeries(user, privateInfo, popularSeries) {
 // callSync();
 // callAsync();
 // aWeirdScenarioInSync();
-ifAsyncChainYourScenario();
+// ifAsyncChainYourScenario();
 
 
 
@@ -136,26 +162,26 @@ ifAsyncChainYourScenario();
 
 function test() {
     var startedAt = present();
-    aWeirdScenarioInSync();
-    aWeirdScenarioInSync();
-    aWeirdScenarioInSync();
-    aWeirdScenarioInSync();
-    aWeirdScenarioInSync();
-    aWeirdScenarioInSync();
-    aWeirdScenarioInSync();
+    // aWeirdScenarioInSync();//12
+    // aWeirdScenarioInSync();//12
+    // aWeirdScenarioInSync();//12
+    // aWeirdScenarioInSync();
+    // aWeirdScenarioInSync();
+    // aWeirdScenarioInSync();
+    // aWeirdScenarioInSync();
 
-    // ifAsyncChainYourScenario();
-    // ifAsyncChainYourScenario();
-    // ifAsyncChainYourScenario();
-    // ifAsyncChainYourScenario();
-    // ifAsyncChainYourScenario();
-    // ifAsyncChainYourScenario();
-    // ifAsyncChainYourScenario();
-    // ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
+    ifAsyncChainYourScenario();
 
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
     console.log('The control flow is DONE, how long it took:', present() - startedAt);
     console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 }
 
-// test();
+test();
