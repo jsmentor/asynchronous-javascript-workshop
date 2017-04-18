@@ -46,3 +46,8 @@ when passing an argument we push that argument to the function:
  - For
  - While
  - etc.
+ 
+ Links:   
+ - [Control Flow](https://raynos.github.io/presentation/shower/controlflow.htm)
+ - [Javascript Control Flow Structures](http://culttt.com/2012/10/29/javascript-control-flow-structures/)
+ - [Control flow and error handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
