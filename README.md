@@ -35,10 +35,14 @@ when passing an argument we push that argument to the function:
  var returnValue = func(argument);
 ```
 
+- **Control flow primitives**
+ Control Flow Structures are an important aspect of programming languages that allow your code to take
+ certain actions based on a variety of scenarios. Control Flow is a fundamental concept in programming that
+ allows you to dictate how your code runs under different conditions or until a certain condition is met.
 
-
-
-
-
-
-
+ - If, Else, Else if   
+ - Operators: < Less than, == equal to , === equal to, != Not equal to, !== Not equal to
+ - Switch
+ - For
+ - While
+ - etc.

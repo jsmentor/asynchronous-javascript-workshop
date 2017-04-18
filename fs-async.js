@@ -1,7 +1,7 @@
 
-var jsonContent = '{"privateEmail": "user-private@example.com","bankAccount": "111-111-11-111","phoneNumber": "+1 111 666 789","birthDate": "1983-04-22T20:30:00.000Z"}';
+let jsonContent = '{"privateEmail": "user-private@example.com","bankAccount": "111-111-11-111","phoneNumber": "+1 111 666 789","birthDate": "1983-04-22T20:30:00.000Z"}';
 
-var fs = {
+let fs = {
   readFile: readFile,
   readFileSync: readFileSync,
   version: '1.0.0'
@@ -26,7 +26,7 @@ function readFileSync(fileName, charset){
 module.exports = fs;
 
 // function syncOperation(){
-//   var data = fs.readFileSync();
+//   let data = fs.readFileSync();
 //   // BLOCKS
 //   console.log(data);
 // }
@@ -39,19 +39,19 @@ module.exports = fs;
 // }
 // asyncOperation();
 
-// var currentList = [
+// let currentList = [
 //   asyncOperation,
 
 // ];
 
-// var currentList = [
+// let currentList = [
 //   f1,
 //   f2
 // ];
 
 // // 15 seconds
 
-// var currentList = [
+// let currentList = [
 //   callback
 // ];
 

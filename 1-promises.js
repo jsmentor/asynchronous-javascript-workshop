@@ -4,7 +4,7 @@
 - Error handling
 - and doing parallel operations
 */
-var fs = require('fs'),
+let fs = require('fs'),
     present = require('present');
 
 function logDuration(startedAt, message) {
@@ -15,7 +15,7 @@ function logDuration(startedAt, message) {
 function getJSON(fileName, callback) {
     return new Promise();
 
-    var startedAt = present();
+    let startedAt = present();
     function giveMeTheResult(err, data) {
         if (err) {
             return callback(err, null);
@@ -37,8 +37,8 @@ function getJSON(fileName, callback) {
 
 function getJSONSync(fileName) {
     // return JSON.parse(fs.readFileSync(fileName, 'utf-8'));
-    var startedAt = present();
-    var data = fs.readFileSync(fileName, JSON.parse(data), 'utf-8');
+    let startedAt = present();
+    let data = fs.readFileSync(fileName, JSON.parse(data), 'utf-8');
     logDuration(startedAt, 'getJSONSync');
     return JSON.parse(data);
 }
@@ -46,7 +46,7 @@ function getJSONSync(fileName) {
 //async
 function getJSON(fileName, callback) {
     return new Promise(function(resolve, reject) {
-        var startedAt = present();
+        let startedAt = present();
 
         function returnResopnse(err, data) {
             if (err) {
@@ -72,7 +72,7 @@ function getJSON(fileName, callback) {
 
 function callSync() {
     try {
-        var data = getJSONSync('data/users.json');
+        let data = getJSONSync('data/users.json');
         console.log(data);
     } catch (err) {
         console.error(err);
@@ -91,10 +91,10 @@ function callAsync() {
 
 function aWeirdScenarioInSync() {
     try {
-        var data = getJSONSync('data/users.json');
-        var randomUser = getRandomUser(data);
-        var privateInfo = getJSONSync(getRandomUserFileAddress(randomUser));
-        var popularSeries = getJSONSync('data/popular-series.json');
+        let data = getJSONSync('data/users.json');
+        let randomUser = getRandomUser(data);
+        let privateInfo = getJSONSync(getRandomUserFileAddress(randomUser));
+        let popularSeries = getJSONSync('data/popular-series.json');
         logUserPopularSeries(randomUser, privateInfo, popularSeries);
     } catch (err) {
         console.error(err);
@@ -102,7 +102,7 @@ function aWeirdScenarioInSync() {
 }
 
 function ifAsyncChainYourScenario() {
-    var randomUser,
+    let randomUser,
         privateInfo;
     getJSON('data/users.json')
         .then(function(data) {
@@ -131,7 +131,7 @@ function getRandomUserFileAddress(randomUser) {
 
 
 function logUserPopularSeries(user, privateInfo, popularSeries) {
-    var birthYear = new Date(privateInfo.birthDate).getFullYear();
+    let birthYear = new Date(privateInfo.birthDate).getFullYear();
     console.log('User: ', user.firstName + ' ' + user.lastName);
     if (typeof popularSeries[birthYear] === 'undefined') {
         return console.log('WOW At your birthDate TV Series has not been invented yet! :) Just kidding data is not availble for :' + birthYear);
@@ -161,7 +161,7 @@ function logUserPopularSeries(user, privateInfo, popularSeries) {
 
 
 function test() {
-    var startedAt = present();
+    let startedAt = present();
     // aWeirdScenarioInSync();//12
     // aWeirdScenarioInSync();//12
     // aWeirdScenarioInSync();//12

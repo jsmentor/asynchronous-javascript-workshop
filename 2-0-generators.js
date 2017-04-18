@@ -1,5 +1,5 @@
 function makeIterator(array) {
-  var nextIndex = 0;
+  let nextIndex = 0;
 
   return {
     next: function () {
@@ -14,12 +14,12 @@ function makeIterator(array) {
 }
 
 function* idMaker() {
-  var index = 0;
+  let index = 0;
   while (index < 3)
     yield index++;
 }
 
-var gen = idMaker();
+let gen = idMaker();
 
 console.log(gen.next().value); // 0
 console.log(gen.next().value); // 1
@@ -40,10 +40,10 @@ function* generator(i) {
   yield i + 10;
 }
 
-var gen = generator(10);
+let gen2 = generator(10);
 
-console.log(gen.next().value); // 10
-console.log(gen.next().value); // 11
-console.log(gen.next().value); // 12
-console.log(gen.next().value); // 13
-console.log(gen.next().value); // 20
+console.log(gen2.next().value); // 10
+console.log(gen2.next().value); // 11
+console.log(gen2.next().value); // 12
+console.log(gen2.next().value); // 13
+console.log(gen2.next().value); // 20

@@ -3,11 +3,11 @@
 $(function(){
 
   function getDataSync(){
-    var req = new XMLHttpRequest();
-    req.open('GET', 'https://ide.c9.io/fixjs/jsremoteconf-2016', true);
+    let req = new XMLHttpRequest();
+    req.open('GET', 'https://api.codementor.io/api/v2/mentors/fixjs/reviews?cm_auth=5eed1556-91b0-4da8-b75c-36db1672f4e2', true);
 
     // since the third parameter is true when you call req.send
-    // it pauses everything BLOCKING
+    // it pauses everything :BLOCKING
     req.send();
 
     // because it was waiting right here, req.response has the data
@@ -15,14 +15,14 @@ $(function(){
   }
 
   function getData(callback){
-    var time1;
-    var req = new XMLHttpRequest();
+    let time1;
+    let req = new XMLHttpRequest();
     req.open('GET', 'https://ide.c9.io/fixjs/jsremoteconf-2016');
 
     req.onreadystatechange = function(){
       if(req.readState === 4){
-        var time2 = new Date().getTime();//miliseconds
-        var seconds = (time2 - time1) / 1000;
+        let time2 = new Date().getTime();//miliseconds
+        let seconds = (time2 - time1) / 1000;
         console.log('We waitied for ' + seconds + ' seconds to get the data');
 
         // req.response has the response
@@ -33,7 +33,7 @@ $(function(){
     // since the third parameter is false, when you call req.send
     // it doesn't pause anything NON-BLOCKING
 
-    var time1 = new Date().getTime();//miliseconds
+    let time1 = new Date().getTime();//miliseconds
     req.send();
 
     // because it is async, req.response doesn't have the data yet
@@ -54,7 +54,7 @@ $(function(){
     // and by waiting blocks everything
     showLoader();
     // git file is visible BUT the loader doesn't spin
-    var data = getDataSync();
+    let data = getDataSync();
     hideLoader();
 
     $('.content').html();
@@ -79,7 +79,7 @@ $(function(){
 });
 
 
-var fileContent = getMeFileContentSync();
+let fileContent = getMeFileContentSync();
 console.log('fileContent:', fileContent);
 
 // 1:
@@ -104,7 +104,7 @@ getMeFileContent({
 
 
 try{
-  var fileContent = getMeFileContentSync();
+  let fileContent = getMeFileContentSync();
   console.log('fileContent:', fileContent);
 } catch(err){
   console.error(err);

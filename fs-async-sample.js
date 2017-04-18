@@ -1,5 +1,5 @@
 
-var fs = require('fs'),
+let fs = require('fs'),
   present = require('present');
 
 function logDuration(startedAt, message) {
@@ -20,7 +20,7 @@ function getFile() {
         console.log('>>>>>>>> Finish: readFileCallback');
     }
 
-    var startMoment = present();
+    let startMoment = present();
     //console.log('>> Before calling fs.readFile');
     fs.readFile('sample.json', 'utf-8', readFileCallback);
     //logDuration(startMoment, 'After fs.readFile');
@@ -38,11 +38,11 @@ HERE
 
 function getFileSync() {
     try{
-      var startMoment = present();
+      let startMoment = present();
       console.log('>> Before calling fs.readFileSync');
 
       // PAUSED
-      var data = fs.readFileSync('data/users2.json', 'utf-8');
+      let data = fs.readFileSync('data/users2.json', 'utf-8');
 
       // PLAY
       logDuration(startMoment, 'After calling fs.readFileSync');
